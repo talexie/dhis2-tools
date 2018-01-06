@@ -28,11 +28,11 @@ $ make deb
 ```
 Install the deb package
 ```bash
-$ make install
+$ sudo make install
 ```
 Clean the compiled files
 ```bash
-$ make clean
+$ sudo make clean
 ```
 This will assemble the source files into a dhis2-tools_x.xubuntu2_all.deb package.
 Required to build:

@@ -1,8 +1,8 @@
 #!/bin/bash
-#       ____  __  ______________ 
+#       ____  __  ______________
 #      / __ \/ / / /  _/ ___/__ \
 #     / / / / /_/ // / \__ \__/ /
-#    / /_/ / __  // / ___/ / __/ 
+#    / /_/ / __  // / ___/ / __/
 #   /_____/_/ /_/___//____/____/
 #
 #   DHIS2 instance startup script
@@ -19,9 +19,34 @@ USER=$LOGNAME
 
 if [ "$USER" == "$INSTANCE" ]
   then
-    /usr/share/tomcat7/bin/startup.sh
+    if [-d "/usr/share/tomcat7"];
+      then
+        /usr/share/tomcat7/bin/startup.sh
+    elif [-d "/usr/share/tomcat8"];
+      then
+        /usr/share/tomcat8/bin/startup.sh
+    elif [-d "/usr/share/tomcat9"];
+      then
+          /usr/share/tomcat9/bin/startup.sh
+    else
+      # todo - Use the CATALINA_HOME variable in setenv.sh
+      /opt/tomcat9/bin/startup.sh
+    fi
+
   else
-    sudo -u $INSTANCE CATALINA_BASE=/var/lib/dhis2/$INSTANCE /usr/share/tomcat7/bin/startup.sh
+    if [-d "/usr/share/tomcat7"];
+      then
+        sudo -u $INSTANCE CATALINA_BASE=/var/lib/dhis2/$INSTANCE /usr/share/tomcat7/bin/startup.sh
+    elif [-d "/usr/share/tomcat8"];
+      then
+        sudo -u $INSTANCE CATALINA_BASE=/var/lib/dhis2/$INSTANCE /usr/share/tomcat8/bin/startup.sh
+    elif [-d "/usr/share/tomcat9"];
+      then
+        sudo -u $INSTANCE CATALINA_BASE=/var/lib/dhis2/$INSTANCE /usr/share/tomcat9/bin/startup.sh
+    else
+      # todo - Use the CATALINA_HOME variable in setenv.sh
+      sudo -u $INSTANCE CATALINA_BASE=/var/lib/dhis2/$INSTANCE /opt/tomcat9/bin/startup.sh
+    fi
 fi
 
 echo "DHIS2 instance starting for $INSTANCE"
