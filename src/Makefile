@@ -28,7 +28,8 @@ install:
 		set -e
 
 		#perimissions
-
+		find ./pkg/usr -type d -exec chmod 0755 {} \;
+		find ./pkg/usr -type f -exec chmod 0755 {} \;
 		find ./pkg/etc -type d -exec chmod 0755 {} \;
 		find ./pkg/etc -type f -exec chmod 0644 {} \;
 

@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+#########################################################
+# postgres backup script v1.2
+# author: Alex Tumwesigye
+# Credit: Bob Jolliffe
+# licence: public domain 
+#
+# using some ideas from 
+# http://wiki.postgresql.org/wiki/Automated_Backup_on_Linux
+#########################################################
+
+BACKUP_DIR=~/backups/
+REMOTE_BACKUP_DIR=/var/lib/dhis2/
+SSHPORT=$SSHPORT
+LOGINUSER=$LOGNAME
+DBHOST=$DBHOST
+REMOTE=$LOGINUSER@$DBHOST:$REMOTE_BACKUP_DIR
+    
+# sync to remote server
+rsync -avzqe ssh -p $SSHPORT $REMOTE $BACKUP_DIR
+
+echo "Database has successfully finished backup job"
+
+
