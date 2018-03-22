@@ -20,7 +20,6 @@ while getopts p:h: option
 done
 LOGINUSER=$LOGNAME
 REMOTE=$LOGINUSER@$DBHOST:$REMOTE_BACKUP_DIR
-echo $REMOTE $SSH_PORT
     
 # sync to remote server
 rsync -avzqe 'ssh -p '${SSH_PORT} $REMOTE $BACKUP_DIR
