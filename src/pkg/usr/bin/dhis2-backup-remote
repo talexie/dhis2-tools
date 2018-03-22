@@ -2,7 +2,6 @@
 #########################################################
 # postgres backup script v1.2
 # author: Alex Tumwesigye
-# Credit: Bob Jolliffe
 # licence: public domain 
 #
 # using some ideas from 
@@ -22,8 +21,8 @@ LOGINUSER=$LOGNAME
 REMOTE=$LOGINUSER@$DBHOST:$REMOTE_BACKUP_DIR
     
 # sync to remote server
-rsync -avzqe 'ssh -p '${SSH_PORT} $REMOTE $BACKUP_DIR
+rsync --exclude="temp*" --exclude="work" --exclude="tomcat.pid" --exclude=".ssh*" --exclude=".*history" --exclude=".oracle*" --exclude="*.xsd" --exclude="*.policy" --exclude="*providers.xml" --exclude="conf/Catalina*" --delete -avzqe 'ssh -p '${SSH_PORT} $REMOTE $BACKUP_DIR
 
-echo "Database has successfully finished backup job"
+echo "Database has successfully finished backup job "
 
 
