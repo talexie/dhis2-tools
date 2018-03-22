@@ -17,7 +17,7 @@ DBHOST=$DBHOST
 REMOTE=$LOGINUSER@$DBHOST:$REMOTE_BACKUP_DIR
     
 # sync to remote server
-rsync -avzqe ssh -p $SSHPORT $REMOTE $BACKUP_DIR
+rsync -avzqe 'ssh -p $SSHPORT' $REMOTE $BACKUP_DIR
 
 echo "Database has successfully finished backup job"
 
