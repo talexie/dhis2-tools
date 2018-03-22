@@ -8,16 +8,22 @@
 # using some ideas from 
 # http://wiki.postgresql.org/wiki/Automated_Backup_on_Linux
 #########################################################
-
 BACKUP_DIR=~/backups/
 REMOTE_BACKUP_DIR=/var/lib/dhis2/
-SSHPORT=$SSHPORT
+
+while getopts p:h: option
+  do
+    case "${option}" in
+      p) SSH_PORT=${OPTARG};;
+      h) DBHOST=${OPTARG};;
+  esac  
+done
 LOGINUSER=$LOGNAME
-DBHOST=$DBHOST
 REMOTE=$LOGINUSER@$DBHOST:$REMOTE_BACKUP_DIR
+echo $REMOTE $SSH_PORT
     
 # sync to remote server
-rsync -avzqe 'ssh -p $SSHPORT' $REMOTE $BACKUP_DIR
+rsync -avzqe 'ssh -p '${SSH_PORT} $REMOTE $BACKUP_DIR
 
 echo "Database has successfully finished backup job"
 
