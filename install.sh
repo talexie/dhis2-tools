@@ -31,8 +31,8 @@ case $RELEASE in
   16.04)
     echo "installing on 16.04";;
 
-  17.10)
-        echo "installing on 17.10";;
+  18.04)
+        echo "installing on 18.04";;
   *)
     echo "The PPA only contains packages for Ubuntu LTS 14.04 and 16.04";
     echo "You can build for other versions if you want, the source code is located at https://github.com/dhis2/dhis2-tools";

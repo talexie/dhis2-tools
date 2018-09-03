@@ -19,13 +19,13 @@ USER=$LOGNAME
 
 if [ "$USER" == "$INSTANCE" ]
   then
-    if [ -d "/usr/share/tomcat7"];
+    if [ -d "/usr/share/tomcat7" ];
       then
         /usr/share/tomcat7/bin/startup.sh
-    elif [ -d "/usr/share/tomcat8"];
+    elif [ -d "/usr/share/tomcat8" ];
       then
         /usr/share/tomcat8/bin/startup.sh
-    elif [ -d "/usr/share/tomcat9"];
+    elif [ -d "/usr/share/tomcat9" ];
       then
           /usr/share/tomcat9/bin/startup.sh
     else
@@ -34,13 +34,13 @@ if [ "$USER" == "$INSTANCE" ]
     fi
 
   else
-    if [ -d "/usr/share/tomcat7"];
+    if [ -d "/usr/share/tomcat7" ];
       then
         sudo -u $INSTANCE CATALINA_BASE=/var/lib/dhis2/$INSTANCE /usr/share/tomcat7/bin/startup.sh
-    elif [ -d "/usr/share/tomcat8"];
+    elif [ -d "/usr/share/tomcat8" ];
       then
         sudo -u $INSTANCE CATALINA_BASE=/var/lib/dhis2/$INSTANCE /usr/share/tomcat8/bin/startup.sh
-    elif [ -d "/usr/share/tomcat9"];
+    elif [ -d "/usr/share/tomcat9" ];
       then
         sudo -u $INSTANCE CATALINA_BASE=/var/lib/dhis2/$INSTANCE /usr/share/tomcat9/bin/startup.sh
     else
